@@ -9,17 +9,27 @@ class API {
     return data;
   }
   async addData(clientData) {
-    const { data } = await axios.post(`${HOST}/api/clients`, clientData);
+    const { data } = await axios.post(`${HOST}/api/clients`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(clientData),
+    });
 
     return data;
   }
   async updateData(id, clientData) {
-    const { data } = await axios.get(`${HOST}/api/clients/${id}`, clientData);
+    const { data } = await axios.put(`${HOST}/api/clients/${id}`, {
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(clientData),
+    });
 
     return data;
   }
-  async deleteData() {
-    const { data } = await axios.get(`${HOST}/api/clients/${id}`);
+  async deleteData(id) {
+    const { data } = await axios.delete(`${HOST}/api/clients/${id}`);
 
     return data;
   }
