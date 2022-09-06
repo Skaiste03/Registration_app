@@ -29,6 +29,12 @@ const List = () => {
     setMessage(message.message);
   };
 
+  const deleteAppointment = async (id) => {
+    const message = await api.deleteData(id);
+
+    setMessage(message.message);
+  };
+
   const messageColor = () => {
     if (message.includes('not')) {
       return 'red';
@@ -36,8 +42,6 @@ const List = () => {
       return 'green';
     }
   };
-
-  console.log(messageColor());
 
   useEffect(() => {
     async function getData() {
@@ -106,7 +110,9 @@ const List = () => {
                   >
                     Edit
                   </StyledButton>
-                  <StyledButton>Delete</StyledButton>
+                  <StyledButton onClick={() => deleteAppointment(client._id)}>
+                    Delete
+                  </StyledButton>
                 </td>
               </tr>
             ))}
