@@ -14,9 +14,11 @@ const getAllClients = asyncHandler(async (req, res) => {
 });
 
 const addClient = asyncHandler(async (req, res) => {
-  const { name, email, date } = req.body;
+  const { name, email, date, time } = req.body;
 
-  const client = await Client.create({ name, email, date });
+  // Checking time availability
+
+  const client = await Client.create({ name, email, date, time });
 
   if (client) {
     res.status(201).json({ message: MESSAGES.success('registered') });

@@ -13,6 +13,10 @@ const ClientSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  time: {
+    type: String,
+    required: true,
+  },
 });
 
 const Client = mongoose.model('client', ClientSchema);
