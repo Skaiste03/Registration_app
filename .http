@@ -2,21 +2,22 @@ GET http://localhost:5000/api/clients
 
 ###
 POST http://localhost:5000/api/clients
-Content-Type: application/json
+content-type: application/json
 
 {
-    "name": "Elena Four",
-    "email": "elena@email.com",
-    "date": "2022-03-12 17:00"
+    "name": "Adelina Four",
+    "email": "adelina@email.com",
+    "date": "2022-08-05",
+    "time": "14:00"
 }
 
 ###
-PUT http://localhost:5000/api/clients/63163d42dc9cc9058ebc84c3
+PUT http://localhost:5000/api/clients/63163d0ddc9cc9058ebc84c1
 Content-Type: application/json
 
 {
-    "name": "Elena Five"
+    "date": "2022-03-12"
 }
 
 ###
-DELETE http://localhost:5000/api/clients/63163d42dc9cc9058ebc84c3
+DELETE http://localhost:5000/api/clients/6317102c87a3c256fa502459
