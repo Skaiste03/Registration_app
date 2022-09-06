@@ -9,22 +9,12 @@ class API {
     return data;
   }
   async addData(clientData) {
-    const { data } = await axios.post(`${HOST}/api/clients`, {
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(clientData),
-    });
+    const { data } = await axios.post(`${HOST}/api/clients`, clientData);
 
     return data;
   }
   async updateData(id, clientData) {
-    const { data } = await axios.put(`${HOST}/api/clients/${id}`, {
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(clientData),
-    });
+    const { data } = await axios.put(`${HOST}/api/clients/${id}`, clientData);
 
     return data;
   }
