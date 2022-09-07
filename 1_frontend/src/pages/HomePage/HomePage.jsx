@@ -1,6 +1,6 @@
 import React from 'react';
-import Form from '../../components/Form/Form';
-import List from '../../components/List/List';
+import Form from '../../components/organisms/Form';
+import List from '../../components/organisms/List';
 import {
   StyledContainer,
   StyledFormSection,
@@ -11,9 +11,7 @@ const HomePage = () => {
   return (
     <StyledContainer>
       <StyledFormSection>
-        <StyledFormHeadline>
-          Beauty salon clients appointments registration
-        </StyledFormHeadline>
+        <StyledFormHeadline>Appointments registration</StyledFormHeadline>
         <Form />
       </StyledFormSection>
       <List />
