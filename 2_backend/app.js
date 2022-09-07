@@ -23,8 +23,8 @@ app.use(cors());
 
 // Routes
 
-// GET - all clients data
-app.get('/api/clients', getAllClients);
+// GET - clients data
+app.get('/api/clients/:page', getAllClients);
 
 // POST - new client
 app.post('/api/clients', addClient);

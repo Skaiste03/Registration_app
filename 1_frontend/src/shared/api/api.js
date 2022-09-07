@@ -3,8 +3,8 @@ import axios from 'axios';
 const HOST = 'http://localhost:5000';
 
 class API {
-  async getData() {
-    const { data } = await axios.get(`${HOST}/api/clients`);
+  async getData(page) {
+    const { data } = await axios.get(`${HOST}/api/clients/${page}`);
 
     return data;
   }

@@ -3,10 +3,26 @@ const Client = require('../models/Client.model.js');
 const asyncHandler = require('express-async-handler');
 
 const getAllClients = asyncHandler(async (req, res) => {
+  // Find All data
   const clients = await Client.find();
 
-  if (clients) {
-    res.send(clients);
+  const reversedClients = [...clients].reverse();
+
+  // Set amount of data
+  const amount = 10;
+
+  // Set page
+  let page = req.params.page;
+
+  // Set start/end index by page
+  const startIndex = (page - 1) * amount;
+  const endIndex = page * amount;
+
+  // Get limited data
+  const data = reversedClients.slice(startIndex, endIndex);
+
+  if (data) {
+    res.send(data);
   } else {
     res.status(404).send({ message: MESSAGES.failure('found') });
     throw new Error({ message: MESSAGES.failure('found') });
