@@ -3,19 +3,22 @@ import Form from '../../components/organisms/Form';
 import List from '../../components/organisms/List';
 import {
   StyledContainer,
-  StyledFormSection,
-  StyledFormHeadline,
+  StyledSection,
+  StyledWrapper,
 } from './HomePage.style';
 
 const HomePage = () => {
   return (
-    <StyledContainer>
-      <StyledFormSection>
-        <StyledFormHeadline>Appointments registration</StyledFormHeadline>
-        <Form />
-      </StyledFormSection>
-      <List />
-    </StyledContainer>
+    <StyledWrapper>
+      <StyledContainer>
+        <StyledSection>
+          <Form />
+        </StyledSection>
+        <StyledSection>
+          <List />
+        </StyledSection>
+      </StyledContainer>
+    </StyledWrapper>
   );
 };
 
