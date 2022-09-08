@@ -59,6 +59,10 @@ const List = () => {
       setResponseMessage(error.response.data.message);
       console.log(error);
     }
+
+    setTimeout(() => {
+      setResponseMessage('');
+    }, 6000);
   };
 
   const deleteAppointment = async (id) => {
@@ -66,6 +70,10 @@ const List = () => {
 
     setResponseMessage(message.message);
     getData(currentPage);
+
+    setTimeout(() => {
+      setResponseMessage('');
+    }, 6000);
   };
 
   return (
