@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const {
-  getAllClients,
+  getClientsData,
   addClient,
   updateClient,
   deleteClient,
@@ -24,7 +24,7 @@ app.use(cors());
 // Routes
 
 // GET - clients data
-app.get('/api/clients/:page', getAllClients);
+app.get('/api/clients/:page', getClientsData);
 
 // POST - new client
 app.post('/api/clients', addClient);
