@@ -68,19 +68,6 @@ const updateClient = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const newData = req.body;
 
-  const time = newData.time;
-  const date = newData.date;
-
-  // Checking time availability
-  const isNotAvailable = await Client.findOne({ time, date });
-
-  if (isNotAvailable) {
-    res.status(400).send({
-      message: 'Appointment time is not available',
-    });
-    throw new Error({ message: 'Appointment time is not available' });
-  }
-
   const updatedClient = await Client.findByIdAndUpdate(id, newData);
 
   if (updatedClient) {
