@@ -42,14 +42,14 @@ const Form = () => {
     try {
       const response = await api.addData(client);
       setMessage(response.message);
+
+      setTimeout(function () {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       setMessage(error.response.data.message);
       console.log(error);
     }
-
-    setTimeout(function () {
-      window.location.reload();
-    }, 1000);
   };
 
   return (
