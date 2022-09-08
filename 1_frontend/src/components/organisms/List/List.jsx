@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../../shared/api';
 import Button from '../../atoms/Button/Button';
+import Pagination from '../../atoms/Pagination/Pagination';
+import ErrorMessage from '../../atoms/ErrorMessage';
 import {
   StyledTableContainer,
   StyledTable,
-  StyledMessage,
   StyledHeadline,
 } from './List.style';
 
 const List = () => {
+  // useState
   const [clientsData, setClientsData] = useState([]);
-  const [message, setMessage] = useState('');
+  const [responseMessage, setResponseMessage] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState(null);
 
   // Side Effects
   useEffect(() => {
-    async function getData() {
-      const clients = await api.getData(1);
-      const array = [];
-
-      array.push(...clients);
-
-      setClientsData(array);
-    }
-
-    getData();
-  }, [clientsData]);
+    getData(currentPage);
+  }, [currentPage]);
 
   // Functions
+  const getData = async (page) => {
+    try {
+      const { limitedClientsData, pages } = await api.getData(page);
+      const array = [];
+
+      array.push(...limitedClientsData);
+
+      // Pages limit
+      setPages(pages);
+      setClientsData(array);
+    } catch (error) {
+      setResponseMessage(`Cannot get clients data try again later`);
+    }
+  };
 
   const editAppointment = async (id) => {
     const name = document.querySelector(`#name${id}`);
@@ -41,41 +50,30 @@ const List = () => {
       time: time.value,
     };
 
-    const message = await api.updateData(id, newData);
+    try {
+      const message = await api.updateData(id, newData);
 
-    setMessage(message.message);
-
-    setTimeout(() => {
-      setMessage('');
-    }, 6000);
+      setResponseMessage(message.message);
+      getData(currentPage);
+    } catch (error) {
+      setResponseMessage(error.response.data.message);
+      console.log(error);
+    }
   };
 
   const deleteAppointment = async (id) => {
     const message = await api.deleteData(id);
 
-    setMessage(message.message);
-
-    setTimeout(() => {
-      setMessage('');
-    }, 6000);
-  };
-
-  const messageColor = () => {
-    if (message.includes('not')) {
-      return 'red';
-    } else {
-      return 'green';
-    }
+    setResponseMessage(message.message);
+    getData(currentPage);
   };
 
   return (
     <StyledTableContainer>
       <StyledHeadline>
-        <h3>Appointments List</h3>
+        <h3>APPOINTMENTS LIST</h3>
       </StyledHeadline>
-      {message && (
-        <StyledMessage textColor={messageColor}>{message}</StyledMessage>
-      )}
+      {responseMessage && <ErrorMessage text={responseMessage} />}
       <StyledTable>
         <thead>
           <tr>
@@ -133,6 +131,13 @@ const List = () => {
             ))}
         </tbody>
       </StyledTable>
+      {pages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          pages={pages}
+          action={setCurrentPage}
+        />
+      )}
     </StyledTableContainer>
   );
 };
