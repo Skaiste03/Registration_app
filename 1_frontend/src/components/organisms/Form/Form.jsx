@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import TimeSelector from '../../atoms/TimeSelector';
-import { StyledForm, StyledInputDiv, StyledMessage } from './Form.style';
+import ErrorMessage from '../../atoms/ErrorMessage';
+import {
+  StyledHeadline,
+  StyledForm,
+  StyledInputDiv,
+  StyledContainer,
+} from './Form.style';
 import api from '../../../shared/api';
 
 const Form = () => {
@@ -10,19 +16,13 @@ const Form = () => {
     hours: '8',
     minutes: '00',
   });
+  const [message, setMessage] = useState('');
   const [client, setClient] = useState({
     name: '',
     email: '',
     date: '',
     time: '',
   });
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    setTimeout(() => {
-      setMessage('');
-    }, 3000);
-  }, [message]);
 
   const addDate = () => {
     const year = datePickerValue.getFullYear();
@@ -36,30 +36,31 @@ const Form = () => {
     setClient((prev) => ({ ...prev, time: hour }));
   };
 
-  const messageColor = () => {
-    if (message.includes('not')) {
-      return 'red';
-    } else {
-      return 'green';
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await api.addData(client);
+    try {
+      const response = await api.addData(client);
+      setMessage(response.message);
+    } catch (error) {
+      setMessage(error.response.data.message);
+      console.log(error);
+    }
 
-    setMessage(response.message);
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
   };
 
   return (
-    <>
+    <StyledContainer>
+      <StyledHeadline>APPOINTMENTS REGISTRATION</StyledHeadline>
       <StyledForm onSubmit={handleSubmit}>
         <StyledInputDiv>
           <input
             type='text'
             id='name'
-            placeholder='Name'
+            placeholder='Name and Surname'
             onChange={(e) =>
               setClient((prev) => ({ ...prev, name: e.target.value }))
             }
@@ -77,7 +78,8 @@ const Form = () => {
         </StyledInputDiv>
         <StyledInputDiv>
           <DateTimePicker
-            format='y-MM-dd'
+            format='y-M-d'
+            locale='en'
             onChange={onChange}
             value={datePickerValue}
             clearIcon={null}
@@ -96,10 +98,8 @@ const Form = () => {
           <input type='submit' id='submit' />
         </StyledInputDiv>
       </StyledForm>
-      {message && (
-        <StyledMessage textColor={messageColor}>{message}</StyledMessage>
-      )}
-    </>
+      {message && <ErrorMessage text={message} />}
+    </StyledContainer>
   );
 };
 
