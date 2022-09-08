@@ -7,6 +7,7 @@ import {
   StyledTableContainer,
   StyledTable,
   StyledHeadline,
+  StyledMessage,
 } from './List.style';
 
 const List = () => {
@@ -57,7 +58,6 @@ const List = () => {
       getData(currentPage);
     } catch (error) {
       setResponseMessage(error.response.data.message);
-      console.log(error);
     }
 
     setTimeout(() => {
@@ -81,7 +81,9 @@ const List = () => {
       <StyledHeadline>
         <h3>APPOINTMENTS LIST</h3>
       </StyledHeadline>
-      {responseMessage && <ErrorMessage text={responseMessage} />}
+      <StyledMessage>
+        {responseMessage && <ErrorMessage text={responseMessage} />}
+      </StyledMessage>
       <StyledTable>
         <thead>
           <tr>

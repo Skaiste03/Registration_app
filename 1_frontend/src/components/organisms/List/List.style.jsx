@@ -22,9 +22,8 @@ export const StyledTableContainer = styled.div`
 
 export const StyledHeadline = styled.div`
   display: inline-block;
-  min-width: 100%;
+  width: 100%;
   text-align: center;
-  margin-bottom: 20px;
   color: ${({ theme }) => theme.color.grey};
 
   h3 {
@@ -33,8 +32,9 @@ export const StyledHeadline = styled.div`
   }
 `;
 
-export const StyledMessage = styled.p`
-  color: ${(props) => props.textColor};
+export const StyledMessage = styled.div`
+  width: 100%;
+  height: 30px;
 `;
 
 export const StyledTable = styled.table`

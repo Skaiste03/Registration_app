@@ -7,6 +7,7 @@ import {
   StyledForm,
   StyledInputDiv,
   StyledContainer,
+  StyledMessage,
 } from './Form.style';
 import api from '../../../shared/api';
 
@@ -98,7 +99,9 @@ const Form = () => {
           <input type='submit' id='submit' />
         </StyledInputDiv>
       </StyledForm>
-      {message && <ErrorMessage text={message} />}
+      <StyledMessage>
+        {message && <ErrorMessage text={message} />}
+      </StyledMessage>
     </StyledContainer>
   );
 };

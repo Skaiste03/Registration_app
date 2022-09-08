@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  padding: 30px;
+  padding: 40px 40px 10px 40px;
 
   border-radius: 10px;
 
@@ -14,7 +14,7 @@ export const StyledContainer = styled.div`
 
 export const StyledHeadline = styled.h3`
   font-size: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
   color: ${({ theme }) => theme.color.grey};
 `;
@@ -78,4 +78,10 @@ export const StyledInputDiv = styled.div`
       color: ${({ theme }) => theme.color.orange};
     }
   }
+`;
+
+export const StyledMessage = styled.div`
+  width: 100%;
+  height: 30px;
+  margin-top: 5px;
 `;
