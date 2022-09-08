@@ -42,7 +42,7 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
 
   td {
-    padding: 5px 0px;
+    padding: 5px;
     text-align: center;
   }
 
