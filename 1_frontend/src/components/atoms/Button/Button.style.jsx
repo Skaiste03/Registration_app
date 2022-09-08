@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  background-color: ${(props) => (props.primary ? '#4ac6d2' : '#9e15bf')};
-  color: #fff;
-  padding: 5px 20px;
+  background-color: ${({ theme }) => theme.color.btnBgTransWhite};
+  color: ${({ theme }) => theme.color.black};
+  padding: 8px 20px;
 
-  border: none;
+  border-radius: 5px;
+  border-right: 1px solid ${({ theme }) => theme.color.btnBgTransWhite};
+  border-top: 1px solid ${({ theme }) => theme.color.btnBgTransWhite};
+  border-left: 1px solid ${(props) => (props.primary ? '#4D724D' : '#D81C23')};
+  border-bottom: 1px solid ${(props) => (props.primary ? '#4D724D' : '#D81C23')};
 
   font-size: 14px;
   font-weight: 500;
@@ -13,7 +17,11 @@ export const StyledButton = styled.button`
   cursor: pointer;
   transition: 0.3s ease-in;
 
+  margin: 3px;
+
   &:hover {
-    opacity: 0.9;
+    border-right: 1px solid
+      ${(props) => (props.primary ? '#4D724D' : '#D81C23')};
+    border-top: 1px solid ${(props) => (props.primary ? '#4D724D' : '#D81C23')};
   }
 `;
