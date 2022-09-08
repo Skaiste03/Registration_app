@@ -11,7 +11,11 @@ const ErrorMessage = ({ text }) => {
   }, [text]);
 
   const messageColor = () => {
-    if (errorMessage.includes('not') || errorMessage.includes('deleted')) {
+    if (
+      errorMessage.includes('not') ||
+      errorMessage.includes('deleted') ||
+      errorMessage.includes('failed')
+    ) {
       return '#D81C23';
     } else {
       return '#4d724d';
