@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../../shared/api';
-import Button from '../../atoms/Button/Button';
-import Pagination from '../../atoms/Pagination/Pagination';
+import Button from '../../atoms/Button';
+import Pagination from '../../atoms/Pagination';
 import ErrorMessage from '../../atoms/ErrorMessage';
 import {
   StyledTableContainer,
   StyledTable,
   StyledHeadline,
   StyledMessage,
+  StyledButtonTd,
 } from './List.style';
 
 const List = () => {
@@ -23,6 +24,8 @@ const List = () => {
   }, [currentPage]);
 
   // Functions
+
+  // GET data
   const getData = async (page) => {
     try {
       const { limitedClientsData, pages } = await api.getData(page);
@@ -38,6 +41,7 @@ const List = () => {
     }
   };
 
+  // UPDATE data
   const editAppointment = async (id) => {
     const name = document.querySelector(`#name${id}`);
     const email = document.querySelector(`#email${id}`);
@@ -65,6 +69,7 @@ const List = () => {
     }, 6000);
   };
 
+  // DELETE data
   const deleteAppointment = async (id) => {
     const message = await api.deleteData(id);
 
@@ -84,19 +89,19 @@ const List = () => {
       <StyledMessage>
         {responseMessage && <ErrorMessage text={responseMessage} />}
       </StyledMessage>
-      <StyledTable>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clientsData &&
-            clientsData.map((client) => (
+      {clientsData.length > 0 && (
+        <StyledTable>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientsData.map((client) => (
               <tr key={client._id}>
                 <td>
                   <input
@@ -126,7 +131,7 @@ const List = () => {
                     defaultValue={client.time}
                   />
                 </td>
-                <td>
+                <StyledButtonTd>
                   <Button
                     primary={true}
                     text={'Edit'}
@@ -136,11 +141,12 @@ const List = () => {
                     text={'Delete'}
                     action={() => deleteAppointment(client._id)}
                   />
-                </td>
+                </StyledButtonTd>
               </tr>
             ))}
-        </tbody>
-      </StyledTable>
+          </tbody>
+        </StyledTable>
+      )}
       {pages > 1 && (
         <Pagination
           currentPage={currentPage}

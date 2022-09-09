@@ -21,8 +21,6 @@ export const StyledTableContainer = styled.div`
 `;
 
 export const StyledHeadline = styled.div`
-  display: inline-block;
-  width: 100%;
   text-align: center;
   color: ${({ theme }) => theme.color.grey};
 
@@ -33,17 +31,15 @@ export const StyledHeadline = styled.div`
 `;
 
 export const StyledMessage = styled.div`
-  width: 100%;
   height: 30px;
 `;
 
 export const StyledTable = styled.table`
-  width: 100%;
+  display: inline-block;
   border-collapse: collapse;
 
   td {
     padding: 5px;
-    text-align: center;
   }
 
   th {
@@ -58,7 +54,7 @@ export const StyledTable = styled.table`
 
     border: none;
 
-    padding: 10px 0px;
+    padding: 14px 0px;
     background-color: ${({ theme }) => theme.color.btnBgTransWhite};
     cursor: pointer;
   }
@@ -80,4 +76,9 @@ export const StyledTable = styled.table`
     background-color: ${({ theme }) => theme.color.green};
     color: ${({ theme }) => theme.color.white};
   }
+`;
+
+export const StyledButtonTd = styled.td`
+  display: flex;
+  align-items: center;
 `;
