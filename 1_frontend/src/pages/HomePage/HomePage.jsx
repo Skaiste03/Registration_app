@@ -14,6 +14,9 @@ const HomePage = () => {
         <StyledSection>
           <Form />
         </StyledSection>
+      </StyledContainer>
+
+      <StyledContainer>
         <StyledSection>
           <List />
         </StyledSection>
