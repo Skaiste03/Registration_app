@@ -38,6 +38,7 @@ const Form = () => {
     setClient((prev) => ({ ...prev, time: hour }));
   };
 
+  // Create data
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,7 +51,6 @@ const Form = () => {
       }, 1000);
     } catch (error) {
       setMessage(error.response.data.message);
-      console.log(error);
     }
   };
 
