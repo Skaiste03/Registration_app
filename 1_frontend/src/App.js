@@ -1,4 +1,3 @@
-import './App.css';
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Loader from './components/atoms/Loader';
