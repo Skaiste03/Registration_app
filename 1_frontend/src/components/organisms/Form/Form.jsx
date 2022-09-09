@@ -8,6 +8,7 @@ import {
   StyledInputDiv,
   StyledContainer,
   StyledMessage,
+  StyledSubmitDiv,
 } from './Form.style';
 import api from '../../../shared/api';
 
@@ -95,9 +96,9 @@ const Form = () => {
             setTime((prev) => ({ ...prev, minutes: e.target.value }))
           }
         />
-        <StyledInputDiv onClick={addDate}>
+        <StyledSubmitDiv onClick={addDate}>
           <input type='submit' id='submit' />
-        </StyledInputDiv>
+        </StyledSubmitDiv>
       </StyledForm>
       <StyledMessage>
         {message && <ErrorMessage text={message} />}

@@ -9,12 +9,14 @@ export const StyledContainer = styled.div`
 
   border-radius: 10px;
 
+  gap: 10px;
+
   background: ${({ theme }) => theme.color.bgTransWhite};
 `;
 
 export const StyledHeadline = styled.h3`
   font-size: 20px;
-  margin-bottom: 20px;
+  text-align: center;
 
   color: ${({ theme }) => theme.color.grey};
 `;
@@ -22,15 +24,11 @@ export const StyledHeadline = styled.h3`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 300px;
 
   gap: 10px;
 `;
 
 export const StyledInputDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-
   .react-datetime-picker__wrapper {
     border: none;
     padding: 5px;
@@ -58,17 +56,24 @@ export const StyledInputDiv = styled.div`
   .react-datetime-picker__wrapper input:focus {
     cursor: text;
   }
+`;
+
+export const StyledSubmitDiv = styled.div`
+  display: flex;
+  flex-direction: column;
 
   #submit {
-    padding: 10px 0px;
     font-size: 16px;
     font-weight: 500;
-    border: none;
-    background-color: ${({ theme }) => theme.color.orange};
     color: ${({ theme }) => theme.color.white};
 
+    background-color: ${({ theme }) => theme.color.orange};
+
+    border: none;
     border-radius: 10px;
     border: 1px solid ${({ theme }) => theme.color.orange};
+
+    padding: 10px 0px;
 
     cursor: pointer;
     transition: 0.6s ease-in-out;
@@ -81,7 +86,5 @@ export const StyledInputDiv = styled.div`
 `;
 
 export const StyledMessage = styled.div`
-  width: 100%;
   height: 30px;
-  margin-top: 5px;
 `;
