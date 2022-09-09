@@ -35,4 +35,5 @@ app.put('/api/clients/:id', updateClient);
 // DELETE - client by id
 app.delete('/api/clients/:id', deleteClient);
 
+// Connecting to server
 app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));

@@ -2,10 +2,12 @@ const MESSAGES = require('../shared/constants');
 const Client = require('../models/Client.model.js');
 const asyncHandler = require('express-async-handler');
 
+// GET data
 const getClientsData = asyncHandler(async (req, res) => {
   // Find All data
   const clients = await Client.find();
 
+  // Object for data
   const data = {};
 
   // Get pages amount
@@ -32,6 +34,7 @@ const getClientsData = asyncHandler(async (req, res) => {
   }
 });
 
+// POST data
 const addClient = asyncHandler(async (req, res) => {
   const { name, email, date, time } = req.body;
 
@@ -45,6 +48,7 @@ const addClient = asyncHandler(async (req, res) => {
     throw new Error({ message: 'Appointment time is not available' });
   }
 
+  // Checking if email and name entered
   if (!name || !email) {
     res.status(400).send({
       message: `Registration failed, check name or email`,
@@ -54,6 +58,7 @@ const addClient = asyncHandler(async (req, res) => {
     });
   }
 
+  // Creating client
   const client = await Client.create({ name, email, date, time });
 
   if (client) {
@@ -64,6 +69,7 @@ const addClient = asyncHandler(async (req, res) => {
   }
 });
 
+// PUT data
 const updateClient = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const newData = req.body;
@@ -77,6 +83,7 @@ const updateClient = asyncHandler(async (req, res) => {
   }
 });
 
+// DELETE data
 const deleteClient = asyncHandler(async (req, res) => {
   const id = req.params.id;
 
